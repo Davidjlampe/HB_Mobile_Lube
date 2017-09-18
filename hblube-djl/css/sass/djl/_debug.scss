@@ -1,0 +1,13 @@
+.debug {position:fixed;top:0;left:25%;display:block;z-index: 9999999; color:#FFF;}/*<div class="debug"></div>*/
+.debug:after {content:"below screen-xs-min #{$screen-xs-min}";}
+
+@media (min-width: $screen-xs-min) {.debug:after {content:"screen-xs-min (#{$screen-xs-min}) to screen-xs-max (#{$screen-xs-max})";}}
+
+@media (min-width: $screen-sm-min) {.debug:after {content:"screen-sm-min (#{$screen-sm-min}) to screen-sm-max (#{$screen-sm-max})";}}
+
+@media (min-width: $screen-md-min) {
+	.debug {left:40%;}
+	.debug:after {content:"screen-md-min (#{$screen-md-min}) to screen-md-max (#{$screen-md-max})";}
+}
+
+@media (min-width: $screen-lg-min) {.debug:after {content:"above screen-lg-min (#{$screen-lg-min})";}}

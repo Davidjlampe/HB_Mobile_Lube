@@ -1,0 +1,91 @@
+/* Image Alignment
+----------------------------------------------------------------------------------------*/
+.alignnone {
+  display: block;
+  position: relative;
+}
+.alignright {
+  float: right;
+  margin: 10px;
+  display: inline;
+}
+.alignleft {
+  float: left;
+  margin: 10px;
+  display: inline;
+}
+.aligncenter {
+  display: block;
+  text-align: center;
+  margin: auto;
+}
+.sticky, .bypostauthor {
+  font-weight: normal;
+}
+
+img , .alignright,  .alignleft,  .aligncenter, .wp-caption  {
+ max-width: 100%;
+ height: auto;
+}
+
+.entry-content embed,
+.entry-content iframe,
+.entry-content object,
+.entry-content video {
+	margin-bottom: 24px;
+	margin-bottom: 1.714285714rem;
+}
+
+.entry-content p,
+.entry-summary p,
+.comment-content p,
+.mu_register p {
+	margin: 0 0 24px;
+	margin: 0 0 1.714285714rem;
+	line-height: 1.714285714;
+}
+
+.postmetadata { margin: 10px 0 10px 0;}
+.entry-meta { position: relative; }
+.post-edit-link {
+  position: absolute;
+  bottom: 0;
+  opacity: 0.1;
+  color: #FFF;
+  background: #000;
+  padding: 1em;
+  z-index: 999;
+  &:hover {
+    opacity: 0.9;
+    color: #FFF;
+  }
+}
+
+/* Caption Styling
+----------------------------------------------------------------------------------------*/
+.wp-caption {
+	max-width: 100%;
+}
+
+.wp-caption .wp-caption-text,
+.gallery-caption,
+.entry-caption {
+	padding: 0 9px 9px;
+	text-align: center;
+}
+
+.wp-caption .wp-caption-text {
+	padding-top: 9px;
+}
+
+.wp-caption.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignleft {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignright {
+    margin: 5px 0 20px 20px;
+}

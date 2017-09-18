@@ -1,0 +1,30 @@
+.bg-gray {
+	@include djlBackground( $gray, #FFF);
+}
+.gray {
+	@include djlColor($gray);
+}
+.bg-gray-light {
+	@include djlBackground( $gray-light, $gray-darker);
+}
+.gray-light {
+	@include djlColor($gray-light);
+}
+.bg-gray-lighter {
+	@include djlBackground( $gray-lighter, $gray);
+}
+.gray-lighter{
+	@include djlColor($gray-lighter);
+}
+.bg-gray-dark {
+	@include djlBackground( $gray-dark, #FFF);
+}
+.gray-dark {
+	@include djlColor($gray-darker);
+} 
+.bg-gray-darker {
+	@include djlBackground( $gray-darker, #FFF);
+}
+.gray-darker {
+	@include djlColor($gray-darker);
+} 

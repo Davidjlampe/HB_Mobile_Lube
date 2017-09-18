@@ -1,0 +1,35 @@
+@mixin position( $position: relative, $top: auto , $right: auto , $bottom: auto , $left: auto ) {
+  position: $position;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}  // faster way to absolutely position items
+@mixin awesome(){
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  text-rendering: auto; // optimizelegibility throws things off #1094
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+} // use css to add icons instead of html, just include this mixin and - content: $fa-var-icon-name;
+
+@mixin link-hocus($color){
+  &:hover,
+  &:focus,
+  &:active { 
+    color: darken($color, 10%);
+    text-decoration: none;
+  }
+}
+
+@mixin btn-hocus($color){
+  &:hover,
+  &:focus,
+  &:active { 
+    background: lighten($color, 10%);
+    border: none;
+  }
+}

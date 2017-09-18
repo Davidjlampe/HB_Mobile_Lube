@@ -1,0 +1,113 @@
+/* ==========================================================================
+   Styles used in visual editor - users can add these classes vie Tiny MCE Advanced
+   ========================================================================== */
+a.btn {
+  display: inline-block;
+  padding: 1em;
+  background-color: #f3f3f3;
+}
+
+a.btn.btn-block {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+a.btn.btn-primary {
+  display: inline-block;
+  padding: 1em;
+  background-color: #428bca;
+  color: #fff;
+}
+
+img.img-circle {
+  border-radius: 50%;
+}
+
+img.img-rounded {
+  border-radius: 5px;
+}
+
+img.img-thumbnail {
+  border-radius: 3px;
+  border: 3px solid #FFF;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+}
+
+.hidden-xs {
+  opacity: 0.9;
+}
+
+.hidden-sm {
+  opacity: 0.9;
+}
+
+.hidden-md {
+  opacity: 0.9;
+}
+
+.hidden-lg {
+  opacity: 0.9;
+}
+
+div {
+  border: 1px dashed #888;
+  padding: 5px;
+  position: relative;
+}
+
+div::before {
+  top: -1.1em;
+  left: 0;
+  content: "DIV class=" attr(class);
+  position: absolute;
+  font-size: 10px;
+  color: #888;
+  background: #FFF;
+}
+
+div[class^="mce"]::before, div[class^="wp"]::before {
+  display: none;
+}
+
+ul.two-col {
+  content-columns: 2;
+  width: 50%;
+  float: left;
+}
+
+ul.squares {
+  list-style: square;
+  padding: 20px 0;
+}
+
+p.text-overlay {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.8);
+  top: 140px;
+  padding: 10px;
+}
+
+ul.faqs {
+  list-style: none;
+  padding: 0;
+}
+
+ul.faqs h3::before {
+  font-size: 1.5em;
+  text-align: center;
+  content: "Q: ";
+  color: #428bca;
+  font-weight: 700;
+}
+
+ul.faqs p {
+  padding-left: 3rem;
+}
+
+ul.faqs p::before {
+  font-size: 2em;
+  text-align: center;
+  content: "A: ";
+  font-weight: 700;
+}
