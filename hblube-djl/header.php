@@ -23,9 +23,7 @@
 	<?php get_template_part( 'inc/navbar'); ?>	
 </header>
 <?php 
-if ( get_field('include_slideshow') ) :  
-get_template_part( 'inc/slider');
-else :
+
 get_template_part('inc/header-image'); 
-endif; 
+ 
 ?>

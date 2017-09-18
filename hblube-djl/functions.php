@@ -6,12 +6,12 @@
 if ( ! function_exists( 'djl_setup' ) ) :
 //Set up theme defaults and registers support for various WordPress features. 
 function djl_setup() {
-	//add_theme_support( 'custom-logo', array(
+	add_theme_support( 'custom-logo', array(
 	//	'width'       => 200, // ideally double the display width for HD screens
     //  'height'      => 200, // ideally double the display height for HD screens
 	//	'flex-height' => false, // force exact cropping
 	//	'flex-width'  => false, // force exact cropping
-	//)); 
+	)); 
 	
 	if ( ! isset( $content_width ) ) $content_width = 900;
 	add_theme_support( 'post-thumbnails' );// Enable support for Post Thumbnails, and declare sizes.
@@ -183,4 +183,9 @@ add_filter('woocommerce_create_account_default_checked' , function ($checked){
     return true;
 });
 
-
+// Add ACF 5 Options Page
+if( function_exists('acf_add_options_page') ) {
+  
+  acf_add_options_page();
+  
+}

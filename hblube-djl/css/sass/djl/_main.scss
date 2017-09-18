@@ -6,12 +6,12 @@
 
 // Woocommerce CSS
 //////////////////////////
-
-.home-hero-products .woocommerce ul.products li.product, .woocommerce-page ul.products li.product {
-    width: 50%;
-    margin-top: 20px;
+#header-content .wc_bookings_field_resource {
+    display: none;
 }
-
+#header-content .woocommerce ul.products li.product {
+    width: 100%;
+}
 
 .product-quantity {
     display: none !important;
@@ -38,4 +38,9 @@
 
 .woocommerce-button.button.order-again {
     margin-left: 20px;
+}
+
+.wc-bookings-booking-form {
+    border: none;
+    padding: 1em 0;
 }
