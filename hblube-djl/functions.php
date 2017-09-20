@@ -80,8 +80,6 @@ require get_template_directory() . '/functions/customizer.php'; // choose option
 require get_template_directory() . '/functions/restrictions.php'; // remove unsed admin areas 
 if (class_exists('Woocommerce')) require get_template_directory() . '/functions/woocommerce-functions.php'; 
 
-//Comments Callback - from Twenty Twelve Theme
-require get_template_directory() . '/functions/djl-comment.php'; 
 
 //Custom Shorcodes
 //custom shortcodes have moved to plugins folder - activate individually
@@ -173,10 +171,10 @@ function djl_login_logo_url_title() {
 }
 add_filter( 'login_headertitle', 'djl_login_logo_url_title' );
 
-//function remove_editor() {
-//  remove_post_type_support('page', 'editor');
-//}
-//add_action('admin_init', 'remove_editor');
+function remove_editor() {
+  remove_post_type_support('page', 'editor');
+}
+add_action('admin_init', 'remove_editor');
 
 
 add_filter('woocommerce_create_account_default_checked' , function ($checked){

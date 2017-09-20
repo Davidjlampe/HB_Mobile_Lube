@@ -1,6 +1,3 @@
-<?php
-// header
-?>
 <!DOCTYPE html>
 <!--[if lt IE 8]>      <html class="no-js lt-ie9 lt-ie8" <?php language_attributes(); ?>> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9 ie8" <?php language_attributes(); ?>> <![endif]-->
@@ -16,14 +13,14 @@
 <!-- GA Code Here -->
 </head>
 <body <?php body_class('flex-column screen-height'); ?>>
-<!--[if lt IE 9]>
-<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-<![endif]-->
+<div class="container-fluid topbar">
+	<div class="row">
+		<div class="col-sm-4 col-sm-offset-8"><p><a href="">FACEBOOK <i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="#">VIEW OUR REVIEWS ON YELP <i class="fa fa-yelp" aria-hidden="true"></i></a></p></div>
+	</div>
+</div>
 <header id="site-header">
 	<?php get_template_part( 'inc/navbar'); ?>	
 </header>
 <?php 
-
-get_template_part('inc/header-image'); 
+get_template_part('inc/header-image'); ?>
  
-?>

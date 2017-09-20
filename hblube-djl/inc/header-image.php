@@ -12,7 +12,7 @@ if ( is_page_template( 'page-templates/home-page.php' ) ) {
  
 ?>
 <section id="header-image" style="background-image: url(<?php echo $headerImageSrc[0]; ?>);background-repeat: no-repeat;background-size: cover;">
-		<div id="header-content" style="min-height: 575px; height: auto;">
+		<div id="header-content">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8">	

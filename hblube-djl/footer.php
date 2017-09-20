@@ -1,24 +1,39 @@
-<footer id="site-footer" class="">
+<div class="container">	
+ 
+	 	<div class="col-md-4">
+	 		<div class="icon"><img src="<?php the_field('footer_icon_one', 'options') ?>"></div>
+	 		<div class="icon-text"><?php the_field('footer_icon_text_one', 'options') ?></div>
+	 	</div>
+	 	<div class="col-md-4">
+	 		<div class="icon"><img src="<?php the_field('footer_icon_two', 'options') ?>"></div>
+	 		<div class="icon-text"><?php the_field('footer_icon_text_two', 'options') ?></div>
+	 	</div>
+	 	<div class="col-md-4">
+	 		<div class="icon"><img src="<?php the_field('footer_icon_three', 'options') ?>"></div>
+	 		<div class="icon-text"><?php the_field('footer_icon_text_three', 'options') ?></div>
+	 	</div>	 		 	
+	</div>	
+</div><!--  .container -->
+
+<div class="container-fluid footer">
 	<div class="container">
-		<?php if ( is_active_sidebar( 'aside-footer' ) ) : ?>
-			<div class="row">
-			        <?php dynamic_sidebar( 'aside-footer' );?>
-			</div><!-- row -->	        
-		<?php endif; ?>
-		<div class="row">	
-			<?php wp_nav_menu( array(
-			       'theme_location'	=> 'icons',
-	           'menu_class'		=>	'icon-nav list-inline',
-	           'container'       => 'nav',
-						 'container_class' => 'social-media col-xs-12',
-	           'depth'			=>	0,
-	           'fallback_cb'	=>	false,
-	           'walker'			=>	new icon_Nav_Walker
-	           )); 
-		     // see 'inc/nav-walker.php' to alter output.  Default uses the title as the font-awesome icon class, the fa- is already added
-		     ?>
-		</div><!-- row -->
+		<div class="row">
+			<div class="col-sm-12">
+		 		<?php wp_nav_menu( array(
+			         'theme_location' => 'primary',
+			         'menu_class'   =>  'nav navbar-nav',
+			         'container'       => '',
+			         'depth'      =>  0,
+			         'fallback_cb'  =>  false,
+			         'walker'     =>  new djl_Nav_Walker
+			         )); // generates the ul
+		        ?>
+			</div>
+		</div>
 	</div>
+</div>
+
+<footer id="site-footer" class="">
 	<div id="copyright" class="">
 		<div class="container">
 			<p class="copyright">
@@ -29,7 +44,7 @@
 	         	 esc_html_e(get_theme_mod( 'djl_copyright_textbox' )); 
 	         	 // user can enter the rest in wp-admin/customize.php screen
 	        	?>
-					<a class="eel pull-right" href="#" target="_blank">W</a>
+					<a class="pull-right" href="http://davidjlampe.com" target="_blank">Website by Davidjlampe.com</a>
 			</p>
 		</div>
 	</div><!-- #copyright -->

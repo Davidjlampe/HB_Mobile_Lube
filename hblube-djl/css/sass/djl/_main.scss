@@ -1,11 +1,135 @@
-//
-// Custom CSS 
-/////////////////////////////////////////
+.btn-custom {
+  color: $brand-primary;
+  font-size: 18px;
+  border: 1px solid #bdc3c7;
+}
 
+.green {
+	background-color: $brand-primary;
+	color: #fff;
+}
+
+.btn-custom:hover {
+  color: #ffffff;
+  border: 1px solid $brand-primary;
+}
+
+.pricing-table {
+  padding-bottom: 30px;
+}
+.pricing-table .pricing-header {
+  position: relative;
+  background: $brand-primary;
+  padding: 22px 22px;
+  text-align: center;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+}
+.pricing-table .pricing-header .pricing-title {
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 24px;
+  text-align: center;
+  font-weight: 700;
+}
+.pricing-table .pricing-header .pricing-rate {
+  font-size: 70px;
+  font-weight: 700;
+  color: #ffffff;
+  position: relative;
+  text-align: center;
+}
+.pricing-table .pricing-header .pricing-rate sup {
+  font-size: 24px;
+  position: relative;
+  top: -30px;
+  color: #bdc3c7;
+}
+.pricing-table .pricing-header .pricing-rate span {
+  font-size: 16px;
+  color: #bdc3c7;
+  text-transform: uppercase;
+}
+.pricing-list {
+  padding: 20px 0 40px 0;
+  background: #ffffff;
+  border: 1px solid #e3e3e3;
+}
+.pricing-list ul {
+  padding: 0px;
+  display: table;
+  margin: 0px auto;
+}
+.pricing-list ul li {
+  list-style: none;
+  border-bottom: 1px solid #EAECEB;
+  color: #bdc3c7;
+  font-size: 16px;
+  line-height: 42px;
+}
+.pricing-list ul li:last-child {
+  border: none;
+}
+.pricing-list ul li i {
+  margin-right: 12px;
+  color: #bdc3c7;
+}
+.pricing-list ul li span {
+  color: $brand-primary;
+}
+
+.panel-heading a:before {
+  content: '$fa-var-plus';
+  position: absolute;
+  font-family: 'FontAwesome';
+  right: 5px;
+  top: 10px;
+  font-size: 24px;
+  transition: all 0.5s;
+  transform: scale(1);
+}
+
+.panel-heading.active a:before {
+  content: ' ';
+  transition: all 0.5s;
+  transform: scale(0);
+}
+
+#bs-collapse .panel-heading a:after {
+  content: ' ';
+  font-size: 24px;
+  position: absolute;
+  font-family: 'FontAwesome';
+  right: 5px;
+  top: 10px;
+  transform: scale(0);
+  transition: all 0.5s;
+}
+
+#bs-collapse .panel-heading.active a:after {
+  content: '$fa-var-minus';
+  transform: scale(1);
+  transition: all 0.5s;
+}
 
 
 // Woocommerce CSS
 //////////////////////////
+
+.booking_data_column:nth-child(2) {
+    display: none;
+}
+
+.booking_data_column {
+    width: 48% !important;
+}
+
+
+.wc_bookings_field_resource {
+    display: none;
+}
+
 #header-content .wc_bookings_field_resource {
     display: none;
 }
@@ -44,3 +168,52 @@
     border: none;
     padding: 1em 0;
 }
+
+.navbar-brand {
+	height: 75px;
+	max-width: 275px;
+}
+
+#header-content h1 {
+    color: #fff;
+}
+#header-content h3 {
+    color: #fff;
+}
+#header-content select {
+    margin-top: 20px;
+    width: 220px;
+    height: 35px;
+    border-radius: 0 !important;
+    background: rgba(255,255,255,.5);
+    color: #fff;
+}
+
+
+.ui-datepicker-title {
+    background: #2ecc71;
+}
+
+.ui-datepicker-next.ui-corner-all {
+}
+
+.wc-bookings-date-picker .ui-datepicker-header {
+    background: #2ecc71;
+}
+
+.wc-bookings-date-picker .ui-datepicker .ui-datepicker-prev, .wc-bookings-date-picker .ui-datepicker .ui-datepicker-next, {background: #2ecc71;}
+
+
+button.wc-bookings-booking-form-button.single_add_to_cart_button.button.alt {
+    background-color: #2ecc71;
+    margin-left: 30px;
+    padding: 10px 25px;
+    border-radius: 0;
+}
+
+.woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt {background-color: #2ecc71;}
+
+.woocommerce-account-fields {
+    display: none;
+}
+
