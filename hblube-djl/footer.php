@@ -1,20 +1,52 @@
-<div class="container">	
+<?php 
+if ( is_cart() || is_checkout() ) {
+    // about.php is used
+} else {
+?>
+<div class="container additional-service">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="additional-service-icon"><img src="<?php the_field('additional_service_icon_one') ?>"></div>
+			<div class="additional-service-title"><h2><?php the_field('additional_service_headline_one') ?></h2></div>
+			<p><?php the_field('additional_service_text_one') ?></p>
+			<a href="<?php the_field('additional_service_link_one') ?>"><?php the_field('additional_service_link_text_one') ?></a>
+			
+		</div>
+		<div class="col-md-6">
+			<div class="additional-service-icon"><img src="<?php the_field('additional_service_icon_two') ?>"></div>
+			<div class="additional-service-title"><h2><?php the_field('additional_service_headline_two') ?></h2></div>
+			<p><?php the_field('additional_service_text_two') ?></p>
+			<a href="<?php the_field('additional_service_link_one') ?>"><?php the_field('additional_service_link_text_two') ?></a>
+			
+		</div>		
+	</div>
+</div>
+
+<div class="container footer-icons">	
  
 	 	<div class="col-md-4">
-	 		<div class="icon"><img src="<?php the_field('footer_icon_one', 'options') ?>"></div>
-	 		<div class="icon-text"><?php the_field('footer_icon_text_one', 'options') ?></div>
+	 		<div class="icon-wrapper">
+		 		<div class="icon"><img src="<?php the_field('footer_icon_one', 'options') ?>"></div>
+		 		<div class="icon-text"><h4><?php the_field('footer_icon_text_one', 'options') ?></h4></div>
+		 	</div>	
 	 	</div>
 	 	<div class="col-md-4">
-	 		<div class="icon"><img src="<?php the_field('footer_icon_two', 'options') ?>"></div>
-	 		<div class="icon-text"><?php the_field('footer_icon_text_two', 'options') ?></div>
+	 		<div class="icon-wrapper">
+		 		<div class="icon"><img src="<?php the_field('footer_icon_two', 'options') ?>"></div>
+		 		<div class="icon-text"><h4><?php the_field('footer_icon_text_two', 'options') ?></h4></div>
+		 	</div>	
 	 	</div>
 	 	<div class="col-md-4">
-	 		<div class="icon"><img src="<?php the_field('footer_icon_three', 'options') ?>"></div>
-	 		<div class="icon-text"><?php the_field('footer_icon_text_three', 'options') ?></div>
+	 		<div class="icon-wrapper">
+		 		<div class="icon"><img src="<?php the_field('footer_icon_three', 'options') ?>"></div>
+		 		<div class="icon-text"><h4><?php the_field('footer_icon_text_three', 'options') ?></h4></div>
+		 	</div>	
 	 	</div>	 		 	
 	</div>	
 </div><!--  .container -->
-
+<?php
+}
+?>
 <div class="container-fluid footer">
 	<div class="container">
 		<div class="row">
