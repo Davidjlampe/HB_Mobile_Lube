@@ -10,14 +10,14 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see 	    https://docs.woocommerce.com/document/template-structure/
+ * @see       https://docs.woocommerce.com/document/template-structure/
  * @author WooThemes
  * @package WooCommerce/Templates/Emails/HTML
  * @version 2.5.0
  */
 
  if ( ! defined( 'ABSPATH' ) ) {
- 	exit;
+  exit;
  }
 
  /**
@@ -38,13 +38,16 @@
  do_action( 'woocommerce_email_order_details', $order, $sent_to_admin, $plain_text, $email );
 
      echo "<h3>Vehicle Information</h3>";
-    echo '<p><strong>' . __( 'Vehicle Year:', 'theme_domain_slug' ) . '</strong> ' . get_post_meta( get_the_ID(), 'car-year', true ) . '</p>';    
-    echo '<p><strong>' . __( 'Vehicle Make:', 'theme_domain_slug' ) . '</strong> ' . get_post_meta( get_the_ID(), 'car-make', true ) . '</p>';    
-    echo '<p><strong>' . __( 'Vehicle Model:', 'theme_domain_slug' ) . '</strong> ' . get_post_meta( get_the_ID(), 'car-model', true ) . '</p>';    
-    echo '<p><strong>' . __( 'Vehicle Trim:', 'theme_domain_slug' ) . '</strong> ' . get_post_meta( get_the_ID(), 'car-model-trim', true ) . '</p>'; 
+    echo '<p><strong>' . __( 'Vehicle Year:', 'theme_domain_slug' ) . '</strong> ' . get_post_meta( $order->get_id(), 'car-year', true ) . '</p>';    
+    echo '<p><strong>' . __( 'Vehicle Make:', 'theme_domain_slug' ) . '</strong> ' . get_post_meta( $order->get_id(), 'car-make', true ) . '</p>';    
+    echo '<p><strong>' . __( 'Vehicle Model:', 'theme_domain_slug' ) . '</strong> ' . get_post_meta( $order->get_id(), 'car-model', true ) . '</p>';    
+    echo '<p><strong>' . __( 'Vehicle Trim:', 'theme_domain_slug' ) . '</strong> ' . get_post_meta( $order->get_id(), 'car-model-trim', true ) . '</p>'; 
+    echo '<p><strong>' . __( 'VIN Number:', 'theme_domain_slug' ) . '</strong> ' . get_post_meta( get_the_ID(), 'vin_number', true ) . '</p>'; 
+    echo '<p><strong>' . __( 'Plate Number:', 'theme_domain_slug' ) . '</strong> ' . get_post_meta( get_the_ID(), 'lic_plate', true ) . '</p>';       
 
      echo "<h3>Location</h3>";
-    echo '<p>' . get_post_meta( get_the_ID(), 'order-location', true ) . '</p>';    
+    echo '<p>' . get_post_meta( $order->get_id(), 'order-location', true ) . '</p>';    
+
 
 
  /**

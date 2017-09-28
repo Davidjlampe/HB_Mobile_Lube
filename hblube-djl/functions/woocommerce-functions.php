@@ -111,7 +111,7 @@ function djl_checkout_fields( $checkout ) {
 
     woocommerce_form_field( 'location', array(
         'type'          => 'text',
-        'class'         => array('input-text')
+        'class'         => array('input-text hidden')
 
     ), $checkout->get_value( 'location' ));        
 
@@ -138,60 +138,78 @@ function djl_checkout_fields( $checkout ) {
 
    woocommerce_form_field( 'car-year', array(
         'type'          => 'text',
-        'class'         => array('input-text')
+        'class'         => array('input-text hidden')
 
     ), $checkout->get_value( 'car-year' ));
 
 
     woocommerce_form_field( 'car-make', array(
         'type'          => 'text',
-        'class'         => array('input-text')
+        'class'         => array('input-text hidden')
 
     ), $checkout->get_value( 'car-make' ));
 
 
     woocommerce_form_field( 'car-model', array(
         'type'          => 'text',
-        'class'         => array('input-text')
+        'class'         => array('input-text hidden')
 
     ), $checkout->get_value( 'car-model' ));
 
 
     woocommerce_form_field( 'car-model-trim', array(
         'type'          => 'text',
-        'class'         => array('input-text')
+        'class'         => array('input-text hidden')
 
     ), $checkout->get_value( 'car-model-trim' ));    
 
     echo '</div>';
 
     }
+    echo "<h5 style='font-style: italic;'>Optional</h5>";
+    woocommerce_form_field( 'vin_number', array(
+   'type' => 'text',
+   'label'      => __('VIN Number', 'woocommerce'),
+   'placeholder'   => _x('Ex. 1C4RJFAG5EC505525', 'placeholder', 'woocommerce'),
+   'required'   => false,
+   'class'      => array('form-row-wide'),
+   'clear'     => true,
+       ), $checkout->get_value( 'vin_number' ));
 
-        echo "<h3>Confirm Location</h3>";  
+    woocommerce_form_field( 'lic_plate', array(
+   'type' => 'text',
+   'label'      => __('VIN Number', 'woocommerce'),
+   'placeholder'   => _x('Ex. 123-UYM', 'placeholder', 'woocommerce'),
+   'required'   => false,
+   'class'      => array('form-row-wide'),
+   'clear'     => true,
+       ), $checkout->get_value( 'lic_plate' ));    
+
+    echo "<h3>Confirm Location</h3>";  
+
+    ?>
+
+    <select name='locations' id="locations">
+    <?
+            
+    echo "<option  value='choose'>Select your business</option>";
+
+    global $product;
+
+    $args = array( 
+        'post_type' => 'product',
+        'product_cat' => 'location'
+    );
+
+    $loop = new WP_Query( $args );
+        while ( $loop->have_posts() ) : 
+                $loop->the_post();
+                      
+                echo '<option  value="'.get_the_ID().'">'.get_field('location').'</option>';
+
+        endwhile;
 
         ?>
-
-        <select name='locations' id="locations">
-          <?
-            
-            echo "<option  value='choose'>Select your business</option>";
-
-          global $product;
-
-          $args = array( 
-            'post_type' => 'product',
-            'product_cat' => 'location'
-             );
-
-              $loop = new WP_Query( $args );
-              while ( $loop->have_posts() ) : 
-                  $loop->the_post();
-                      
-                  echo '<option  value="'.get_the_ID().'">'.get_field('location').'</option>';
-
-            endwhile;
-
-          ?>
         </select>
 
         <?php
@@ -200,7 +218,7 @@ function djl_checkout_fields( $checkout ) {
 
                woocommerce_form_field( 'order-location', array(
                     'type'          => 'text',
-                    'class'         => array('input-text')
+                    'class'         => array('input-text hidden')
 
                 ), $checkout->get_value( 'order-location' ));
 
@@ -248,6 +266,18 @@ function djl_checkout_field_update_order_meta( $order_id ) {
         // updating user meta (for customer my account edit details page post data)
         update_user_meta( get_post_meta( $order_id, '_customer_user', true ), 'account_order_location', sanitize_text_field($_POST['order-location']) );
     } 
+    if (!empty( $_POST['vin_number'])){
+        update_post_meta( $order_id, 'vin_number', sanitize_text_field( $_POST['vin_number'] ) );
+
+        // updating user meta (for customer my account edit details page post data)
+        update_user_meta( get_post_meta( $order_id, '_customer_user', true ), 'account_vin_number', sanitize_text_field($_POST['vin_number']) );
+    } 
+    if (!empty( $_POST['lic_plate'])){
+        update_post_meta( $order_id, 'lic_plate', sanitize_text_field( $_POST['lic_plate'] ) );
+
+        // updating user meta (for customer my account edit details page post data)
+        update_user_meta( get_post_meta( $order_id, '_customer_user', true ), 'account_lic_plate', sanitize_text_field($_POST['lic_plate']) );
+    }         
 }
 
 add_action ( 'personal_options_update', 'djl_save_extra_profile_fields' );
@@ -286,7 +316,23 @@ function djl_save_extra_profile_fields( $user_id )
     // for customer my account edit details page post data
     if ( isset($_POST['account_car_trim']) ) {
         update_user_meta( $user_id, 'account_car_model_trim', sanitize_text_field($_POST['account_car_model_trim']) );
-    }            
+    }     
+    // for checkout page post data
+    if ( isset($_POST['vin_number']) ) {
+        update_user_meta( $user_id, 'account_vin_number', sanitize_text_field($_POST['vin_number']) );
+    }
+    // for customer my account edit details page post data
+    if ( isset($_POST['account_vin_number']) ) {
+        update_user_meta( $user_id, 'account_vin_number', sanitize_text_field($_POST['account_vin_number']) );
+    }   
+    // for checkout page post data
+    if ( isset($_POST['lic_plate']) ) {
+        update_user_meta( $user_id, 'account_lic_plate', sanitize_text_field($_POST['lic_plate']) );
+    }
+    // for customer my account edit details page post data
+    if ( isset($_POST['account_lic_plate']) ) {
+        update_user_meta( $user_id, 'account_lic_plate', sanitize_text_field($_POST['account_lic_plate']) );
+    }                   
 }
 
 
@@ -301,6 +347,8 @@ function djl_checkout_field_display_vehicle_order_meta($order){
     echo '<p><strong>' . __( 'Vehicle Make:', 'theme_domain_slug' ) . '</strong> ' . get_post_meta( get_the_ID(), 'car-make', true ) . '</p>';    
     echo '<p><strong>' . __( 'Vehicle Model:', 'theme_domain_slug' ) . '</strong> ' . get_post_meta( get_the_ID(), 'car-model', true ) . '</p>';    
     echo '<p><strong>' . __( 'Vehicle Trim:', 'theme_domain_slug' ) . '</strong> ' . get_post_meta( get_the_ID(), 'car-model-trim', true ) . '</p>';    
+    echo '<p><strong>' . __( 'VIN Number:', 'theme_domain_slug' ) . '</strong> ' . get_post_meta( get_the_ID(), 'vin_number', true ) . '</p>'; 
+    echo '<p><strong>' . __( 'Plate Number:', 'theme_domain_slug' ) . '</strong> ' . get_post_meta( get_the_ID(), 'lic_plate', true ) . '</p>';   
     }   
 
 // Display field value on the order edit page
@@ -310,7 +358,7 @@ add_action( 'woocommerce_admin_booking_data_after_booking_details ', 'djl_checko
 function djl_checkout_field_display_location_order_meta($order){
 
     echo "<h3>Location Details</h3>";
-    echo '<p><strong>' . __( 'Location:', 'theme_domain_slug' ) . '</strong> ' . get_post_meta( get_the_ID(), 'order-location', true ) . '</p>';    
+    echo '<p><strong>' . __( 'Location:', 'theme_domain_slug' ) . '</strong> ' . get_post_meta( get_the_ID(), 'order-location', true ) . '</p>';  
 
 }   
 
@@ -359,7 +407,22 @@ function djl_checkout_field_display_my_account($user){ ?>
         <input type="text" name="car-model-trim" id="car-model-trim" value="<?php echo esc_attr(get_user_meta($user->ID, 'account_car_model_trim', true)); ?>" class="regular-text" />
     </td>
 </tr>
-
+<tr>
+    <th>
+        <label for="car-model">VIN Number:</label>
+    </th>
+    <td>
+        <input type="text" name="vin-number" id="vin-number" value="<?php echo esc_attr(get_user_meta($user->ID, 'account_vin_number', true)); ?>" class="regular-text" />
+    </td>
+</tr>
+<tr>
+    <th>
+        <label for="car-model-trim">Lic Plate #:</label>
+    </th>
+    <td>
+        <input type="text" name="lic-plate" id="lic-plate" value="<?php echo esc_attr(get_user_meta($user->ID, 'account_lic_plate', true)); ?>" class="regular-text" />
+    </td>
+</tr>
 
 </table>
 
@@ -385,10 +448,18 @@ function djl_user_extra_profile_fields() {
     $carmake = get_user_meta( $user_id, 'account_car_make', true );
     $carmodel = get_user_meta( $user_id, 'account_car_model', true );
     $carmodeltrim = get_user_meta( $user_id, 'account_car_model_trim', true );
+    $vinnumber = get_user_meta( $user_id, 'account_vin_number', true );
+    $licplate = get_user_meta( $user_id, 'account_lic_plate', true );    
 
     echo "<h3>Your vehicle information</h3>";
     echo '<h4>' . $caryear . ' ' .$carmake . ' ' . $carmodel . ' ' . $carmodeltrim . '</h4>';
-    echo "<p>Do you need to change your vehicle?<br>";
+    echo '<p><strong>' . __( 'VIN Number:', 'theme_domain_slug' ) . '</strong> ' . $vinnumber . '</p>'; 
+    echo '<p><strong>' . __( 'Plate Number:', 'theme_domain_slug' ) . '</strong> ' . $licplate . '</p>'; 
+
+
+    echo "<p>Do you need to change your vehicle?<br>";    
+
+    echo "string";
     
     ?>
 
@@ -409,6 +480,10 @@ function djl_user_extra_profile_fields() {
                 echo '<select name="car-models" id="car-models"></select>'; 
                 echo '<select name="car-model-trims" id="car-model-trims"></select>  ';   
             ?>
+            <?php echo "Vin Number" ?>
+            <input type="text" id="vin-number" name="vin-number" value="<?php echo esc_attr( $vinnumber ); ?>" class="input-text" />
+            <?php echo "License Plate #" ?>
+            <input type="text" id="lic-plate" name="lic-plate" value="<?php echo esc_attr( $licplate); ?>" class="input-text" />            
         </p>                        
     </fieldset>
     </div>
@@ -425,6 +500,8 @@ function djl_user_save_extra_profile_fields( $user_id ) {
     update_user_meta( $user_id, htmlentities( $_POST[ 'account_car_make' ] ) ); 
     update_user_meta( $user_id, htmlentities( $_POST[ 'account_car_model' ] ) ); 
     update_user_meta( $user_id, htmlentities( $_POST[ 'account_car_model_trim' ] ) );  
+    update_user_meta( $user_id, htmlentities( $_POST[ 'vin_number' ] ) ); 
+    update_user_meta( $user_id, htmlentities( $_POST[ 'lic_plate' ] ) );      
 } // end func
 
 
@@ -543,7 +620,7 @@ function djl_add_my_account_endpoint() {
 add_action( 'woocommerce_account_vehicle_endpoint', 'djl_information_endpoint_content' );
 
 function djl_information_endpoint_content() {
-    include WP_CONTENT_DIR . '/themes/djl/woocommerce/myaccount/my-custom-endpoint.php'; 
+    include WP_CONTENT_DIR . '/themes/hblube-djl/woocommerce/myaccount/my-custom-endpoint.php'; 
 }
  
 

@@ -5,11 +5,10 @@ if ( get_field('default_header_image', 'options') || get_field('custom_header_im
 	$imageId = $thisPage ? $thisPage : $default;
 	$headerImageSrc = wp_get_attachment_image_src( $imageId, 'full' ); // change size if needed
 ?>
-<?php 
-if ( is_page_template( 'page-templates/home-page.php' ) ) {
-    // about.php is used
 
- 
+
+<?php
+if ( is_page_template( 'page-templates/home-page.php' ) ) {
 ?>
 <section id="header-image" style="background-image: url(<?php echo $headerImageSrc[0]; ?>);background-repeat: no-repeat;background-size: cover;">
 		<div id="header-content">
@@ -28,9 +27,12 @@ if ( is_page_template( 'page-templates/home-page.php' ) ) {
 </section>		
 
 <?php
+} elseif ( is_cart() || is_checkout() || is_account_page() ) {
+  // static homepage
 } else {
-    // about.php is not used
-}
-
+?>	
+<section id="header-image" class="hidden-xs" style="background-image: url(<?php echo $headerImageSrc[0]; ?>);background-repeat: no-repeat;background-size: cover;">
+		<div class="spacer" style="min-height: 300px;"></div>  </section>	
+<?php
+}}
 ?>
- <?php } ?>

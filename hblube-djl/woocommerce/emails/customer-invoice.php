@@ -1,8 +1,8 @@
 <?php
 /**
- * Customer processing order email
+ * Customer invoice email
  *
- * This template can be overridden by copying it to yourtheme/woocommerce/emails/customer-processing-order.php.
+ * This template can be overridden by copying it to yourtheme/woocommerce/emails/customer-invoice.php.
  *
  * HOWEVER, on occasion WooCommerce will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
@@ -25,7 +25,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
-<p><?php _e( "Thank you for your order. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac bibendum enim, eu tempor felis. Aenean non diam eget est euismod sodales at eu augue. Fusce porttitor felis ut orci malesuada semper. Proin augue justo, porta ac vehicula ac, hendrerit ac magna. Praesent eu dui tempus, consequat nisl et, tincidunt tellus. ", 'woocommerce' ); ?></p>
+<?php if ( $order->has_status( 'pending' ) ) : ?>
+	<p><?php echo 'An order for additional services has been created for yoy by HB Mobile Lube. To pay for this order please use the following link:'; ?></p>
+	<p><?php echo '<a style="display: inline-block;margin-bottom: 0;font-weight: normal;text-align: center;vertical-align: middle;cursor: pointer;background-image: none;border: 1px solid transparent;white-space: nowrap;position: relative;line-height: 1.42857;color: #fff;background-color: #1cad7e;border-color: #18976e;border-radius: 0;font-size: .8em;padding: 10px 30px;" href="' . esc_url( $order->get_checkout_payment_url() ) . '">' . __( 'pay', 'woocommerce' ) . '</a>'; ?></p>
+<?php endif; ?>
 
 <?php
 

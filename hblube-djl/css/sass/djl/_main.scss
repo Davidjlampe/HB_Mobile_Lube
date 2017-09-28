@@ -86,7 +86,6 @@
 
 .icon {
     display: inline-block;
-    background: aquamarine;
     height: 50px;
     width: 50px;
 }
@@ -138,6 +137,23 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ebebeb',GradientType=1 ); /* IE6-9 */
     padding: 30px 0;
     border: 1px solid #ebebeb;
+}
+
+.book-cta {
+    padding: 10px 20px 20px 20px;
+    margin-bottom: 30px;
+
+    .btn {
+        margin-top: 24px;
+        width: 100%;
+        background-color: #fff;
+        color: green;
+    }
+
+}
+
+article {
+  margin-top: 30px;
 }
 
 // Home Page
@@ -344,16 +360,136 @@
     font-size: .8em;
 }
 
+// Steps Section
+/////////////////////////////////
 
+.step-box {
+    background: $brand-primary;
+    padding: 10px 10px 10px 20px;
+    position: relative;
+    min-height: 120px;
+
+      &::after {
+      content: "";
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-top: 20px solid $brand-primary;
+      position: absolute;
+      bottom: -17px;
+      left: 50%;
+      z-index: 998;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+      z-index: 1001;
+      -webkit-box-shadow: 0px 0px 15px -2px rgba(0,0,0,0.55);
+      -moz-box-shadow: 0px 0px 15px -2px rgba(0,0,0,0.55);
+      box-shadow: 0px 0px 15px -2px rgba(0,0,0,0.55);
+    }   
+
+  .step-number {
+      position: absolute;
+      top: 25%;
+      right: -41px;
+      padding: 27px;
+      background: #fff;
+      height: 81px;
+      border: 5px solid $brand-primary;
+      border-radius: 100%;
+      color: $brand-primary;
+
+      @media (max-width: $screen-sm) { 
+        top: 16%;
+        right: -14px;         
+      }
+  }
+
+  .step-number h1 {
+      margin-top: -12px;
+  }   
+
+  &:nth-child(2) {
+    background: lighten($brand-primary, 13.5%);
+
+      .step-number {
+        border-color: lighten($brand-primary, 13.5%);
+        color:  lighten($brand-primary, 13.5%);
+      }
+
+      &::after {
+        border-top-color: lighten($brand-primary, 13.5%);
+
+      }
+  } 
+
+  &:nth-child(3) {
+    background: lighten($brand-primary, 27%);
+
+      .step-number {
+        border-color: lighten($brand-primary, 27%);
+        color:  lighten($brand-primary, 27%)
+      }   
+
+      &::after {
+        border: none;
+      }
+
+  }
+
+  .step-text {
+      color: #fff;
+      width: 90%;
+      display: inline-block;
+
+      @media (max-width: $screen-sm) { 
+      width: 84%;
+      }   
+
+  }
+
+
+}
 
 
 // Footer
 ///////////////////////////////////////
 
 .additional-service {
-  padding: 0 0 30px;
+  
+  border-top: 1px solid #ebebeb;
+
+  p {
+        padding: 10px 10px 10px 0;
+  }
+
+  .col-md-6 {
+    padding: 10px 30px 30px;
+
+      &:first-child {
+          border-right: 1px solid #ebebeb;
+      }
+  }
+
+
+
 }
 
+.additional-service-icon img {
+    width: 50px;
+    height: 50px;
+}
+
+.additional-service-icon {
+    float: left;
+    padding: 30px 10px 15px 0;
+}
+
+.additional-service-title {
+    text-transform: uppercase;
+}
 
 .footer-icons {
     border-top: 1px solid #ebebeb;

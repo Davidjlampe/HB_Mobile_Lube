@@ -114,7 +114,16 @@ class WC_Bookings_Customer_Meta_Box {
 					<tr>
 						<th><?php esc_html_e( 'Vehicle Trim:', 'woocommerce-bookings' ); ?></th>
 						<td><?php echo esc_html( $user->account_car_model_trim  ? $user->account_car_model_trim : '&mdash;' ); ?></td>
-					</tr>										
+					</tr>
+					<tr>
+						<th><?php esc_html_e( 'VIN #:', 'woocommerce-bookings' ); ?></th>
+						<td><?php echo esc_html( $user->account_vin_number ? $user->account_vin_number : '&mdash;' ); ?></td>
+					</tr>
+					<tr>
+						<th><?php esc_html_e( 'Lic Plate #:', 'woocommerce-bookings' ); ?></th>
+						<td><?php echo esc_html( $user->account_lic_plate  ? $user->account_lic_plate : '&mdash;' ); ?></td>
+					</tr>					
+															
 					<tr>
 						<th><?php esc_html_e( 'Location:', 'woocommerce-bookings' ); ?></th>
 						<td><?php echo esc_html( $user->account_order_location  ? $user->account_order_location : '&mdash;' ); ?></td>

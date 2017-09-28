@@ -35,14 +35,31 @@ inspection, I will let you know. In fact, I can recommend a repair facility. You
     $order_id = esc_attr( $order->get_id() ); // 3.0+
 
 
-    $tracking_num = get_field('upload_form', $order_id );
-    if( $tracking_num ){
-        echo '<p>' . $tracking_num . '</p>';
+    $link = get_field('upload_form', $order_id );
+    if( $link ){
+        ?>
+	
+	<a style="display: inline-block;margin-bottom: 0;font-weight: normal;text-align: center;vertical-align: middle;cursor: pointer;background-image: none;border: 1px solid transparent;white-space: nowrap;position: relative;line-height: 1.42857;color: #fff;background-color: #1cad7e;border-color: #18976e;border-radius: 0;font-size: .8em;padding: 10px 30px;" class="button" href="<?php echo $link; ?>">Download Vehicle Inspection</a>
+
+<?php
+   
+    }
+
+
+    $additional_link = get_field('addition_work_form', $order_id );
+    if( $additional_link){
+        ?>
+    <hr>   
+	<h2 style="color: #d8c81a"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Additional service agreement required</h2>
+	<p>Your inspection revealed that your vehicle could use some extra maintenance. By law, we are required to send a service agreement for the additional service. Please download the PDF and digitally sign and email back to <a href="mailto:service@hbmobilelube.com">service@hbmobilelube.com</a> or print and sign. </p>
+	<a class="button" style="display: inline-block;margin-bottom: 0;font-weight: normal;text-align: center;vertical-align: middle;cursor: pointer;background-image: none;border: 1px solid transparent;white-space: nowrap;position: relative;line-height: 1.42857;color: #fff;background-color: #1cad7e;border-color: #18976e;border-radius: 0;font-size: .8em;padding: 10px 30px;" href="<?php echo $additional_link; ?>">Download Service Agreement</a>
+
+<?php
+    } else {
+    	//nothing here
     }
 
     ?>
-
-
 
 <?php
 
