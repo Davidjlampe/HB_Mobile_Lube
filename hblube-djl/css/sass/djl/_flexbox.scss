@@ -1,0 +1,72 @@
+@if $flexbox {
+	.display-flex, .flex-column , .flex-row, .flex-wrap, .flex-nowrap { 
+		@include flexbox; 
+	}
+	.item {
+		padding: 1rem;
+	}
+	.gutters {
+		margin: 0 -1rem;
+		> * {
+			background-clip: padding-box;
+   		border: 1rem solid transparent;
+		}
+	}
+	.screen-height {
+		min-height: 100vh;
+	}
+	.align-start, .align-end, .align-center, .align-baseline, .align-stretch, .align-around,.align-between,
+	.items-start, .items-end,.items-center, .items-baseline, .items-stretch { height: 100%;}
+	.display-inline-flex { @include inline-flex; }
+	.flex-row { @include flex-direction(row);}
+	.flex-column { @include flex-direction(column);}
+	.flex-wrap { @include flex-wrap(wrap);}
+	.flex-nowrap { @include flex-wrap(nowrap);}
+	.align-start { @include align-content(flex-start);}
+	.align-end { @include align-content(flex-end);}
+	.align-center { @include align-content(center);}
+	.align-baseline { @include align-content(baseline);}
+	.align-stretch { @include align-content(stretch);}
+	.align-around { @include align-content(space-around);}
+	.align-between { @include align-content(space-between);}
+	.items-start { @include align-items(flex-start);}
+	.items-end { @include align-items(flex-end);}
+	.items-center { @include align-items(center);}
+	.items-baseline { @include align-items(baseline);}
+	.items-stretch { @include align-items(stretch);}
+	.justify-start { @include justify-content(flex-start);}
+	.justify-end { @include justify-content(flex-end);}
+	.justify-center { @include justify-content(center);}
+	.justify-between { @include justify-content(space-between);}
+	.justify-around {  @include justify-content(space-around);}
+	.flex-shrink {  @include  flex-shrink(1); }
+	.flex-noshrink {  @include  flex-shrink(0); }
+	.flex-grow {  @include  flex-grow(1); }
+	.flex-nogrow {  @include  flex-grow(0); }
+
+	@include make-flex-grid(12, 'xs');
+
+	@media (min-width: $screen-sm) {
+		.first-sm { @include order(-1); }
+		.last-sm { @include order(99); }
+		.flex-row-sm { @include flex-direction(row);}
+		.flex-column-sm { @include flex-direction(column);}
+		@include make-flex-grid(12, 'sm');
+	}
+
+	@media (min-width: $screen-md) {
+		.first-md { @include order(-1); }
+		.last-md { @include order(99); }
+		.flex-row-md { @include flex-direction(row);}
+		.flex-column-md { @include flex-direction(column);}
+		@include make-flex-grid(12, 'md');
+	}
+
+	@media (min-width: $screen-lg) {
+		.first-lg { @include order(-1); }
+		.last-lg { @include order(99); }
+		.flex-row-lg { @include flex-direction(row);}
+		.flex-column-lg { @include flex-direction(column);}
+		@include make-flex-grid(12, 'lg');
+	}
+}
