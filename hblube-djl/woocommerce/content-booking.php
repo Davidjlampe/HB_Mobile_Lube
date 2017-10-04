@@ -40,7 +40,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 
 	<div id="wc-bookings-booking-form" class="wc-bookings-booking-form row" style="display:none">
 
-		<div class="col-sm-12">
+		<div class="col-xs-10 col-xs-offset-1">
 
 			<?php do_action( 'woocommerce_before_booking_form' ); ?>
 
@@ -53,15 +53,15 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 			<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
 
 			
-		<div class="row">
-			<div class="col-sm-6 col-sm-offset-6">
+
+			
 				
 	<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( is_callable( array( $product, 'get_id' ) ) ? $product->get_id() : $product->id ); ?>" class="wc-booking-product-id" />
 
 	<button type="submit" class="wc-bookings-booking-form-button single_add_to_cart_button button alt disabled" style="display:none"><?php echo $product->single_add_to_cart_text(); ?></button>
 
-			</div>
-		</div>
+			
+
 
 		</div> <!--End of col-sm-12 -->	
 

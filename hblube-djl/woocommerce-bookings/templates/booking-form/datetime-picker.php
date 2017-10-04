@@ -15,7 +15,7 @@ if ( is_page_template( 'home-page.php' ) ) {
 }
 ?>
 
-<fieldset class="wc-bookings-date-picker col-sm-6 <?php echo implode( ' ', $class ); ?>">
+<fieldset class="wc-bookings-date-picker <?php echo implode( ' ', $class ); ?>">
 
 	<div class="picker" data-display="<?php echo $display; ?>" data-availability="<?php echo esc_attr( json_encode( $availability_rules ) ); ?>" data-default-availability="<?php echo $default_availability ? 'true' : 'false'; ?>" data-fully-booked-days="<?php echo esc_attr( json_encode( $fully_booked_days ) ); ?>" data-partially-booked-days="<?php echo esc_attr( json_encode( $partially_booked_days ) ); ?>" data-restricted-days="<?php echo esc_attr( json_encode( $restricted_days ) ); ?>" data-min_date="<?php echo ! empty( $min_date_js ) ? $min_date_js : 0; ?>" data-max_date="<?php echo $max_date_js; ?>" data-default_date="<?php echo esc_attr( $default_date ); ?>"></div>
 	<div class="wc-bookings-date-picker-date-fields">
@@ -46,7 +46,7 @@ if ( is_page_template( 'home-page.php' ) ) {
 </fieldset>
 
 
-	<div class="form-field form-field-wide col-sm-6">
+	<div class="form-field form-field-wide">
 		<ul class="block-picker">
 			<li><?php _e( 'Choose a date above to see available times.', 'woocommerce-bookings' ); ?></li>
 		</ul>

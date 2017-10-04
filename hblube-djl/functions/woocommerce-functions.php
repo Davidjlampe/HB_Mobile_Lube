@@ -63,7 +63,7 @@ function djl_checkout_fields( $checkout ) {
 
 
 
-    echo '<input class="input-text " name="location" id="location" type="text" placeholder="">';
+    echo '<input class="input-text hidden" name="location" id="location" type="text" placeholder="">';
 
     
     ?>
@@ -166,6 +166,7 @@ function djl_checkout_fields( $checkout ) {
     echo '</div>';
 
     }
+    echo "<div class='well'>";    
     echo "<h5 style='font-style: italic;'>Optional</h5>";
     woocommerce_form_field( 'vin_number', array(
    'type' => 'text',
@@ -178,13 +179,15 @@ function djl_checkout_fields( $checkout ) {
 
     woocommerce_form_field( 'lic_plate', array(
    'type' => 'text',
-   'label'      => __('VIN Number', 'woocommerce'),
+   'label'      => __('Lic Plate Number', 'woocommerce'),
    'placeholder'   => _x('Ex. 123-UYM', 'placeholder', 'woocommerce'),
    'required'   => false,
    'class'      => array('form-row-wide'),
    'clear'     => true,
        ), $checkout->get_value( 'lic_plate' ));    
 
+    echo "</div>";
+    echo "<hr>";
     echo "<h3>Confirm Location</h3>";  
 
     ?>
@@ -336,29 +339,58 @@ function djl_save_extra_profile_fields( $user_id )
 }
 
 
+/**
+ * Process the checkout with custom fields
+ */
+add_action('woocommerce_checkout_process', 'djl_custom_checkout_field_process');
+
+function djl_custom_checkout_field_process() {
+    // Check if set, if its not set add an error.
+    if ( ! $_POST['car-year'] )
+        wc_add_notice( __( 'Please enter your vehicles year.' ), 'error' );
+    if ( ! $_POST['car-make'] )
+        wc_add_notice( __( 'Please enter your vehicles make.' ), 'error' );
+    if ( ! $_POST['car-model'] )
+        wc_add_notice( __( 'Please enter your vehicles model.' ), 'error' );  
+    if ( ! $_POST['account_order_location'] )
+        wc_add_notice( __( 'Please confirm your location' ), 'error' );                            
+}
+
+
 // Display field value on the order edit page
 add_action( 'woocommerce_admin_order_data_after_billing_address', 'djl_checkout_field_display_vehicle_order_meta', 10, 1 );
 add_action( 'woocommerce_admin_booking_data_after_booking_details ', 'djl_checkout_field_display_vehicle_order_meta', 10, 1);
 
-function djl_checkout_field_display_vehicle_order_meta($order){
+function djl_checkout_field_display_vehicle_order_meta($order_id){
 
-    echo "<h3>Vehicle Information</h3>";
-    echo '<p><strong>' . __( 'Vehicle Year:', 'theme_domain_slug' ) . '</strong> ' . get_post_meta( get_the_ID(), 'car-year', true ) . '</p>';    
-    echo '<p><strong>' . __( 'Vehicle Make:', 'theme_domain_slug' ) . '</strong> ' . get_post_meta( get_the_ID(), 'car-make', true ) . '</p>';    
-    echo '<p><strong>' . __( 'Vehicle Model:', 'theme_domain_slug' ) . '</strong> ' . get_post_meta( get_the_ID(), 'car-model', true ) . '</p>';    
-    echo '<p><strong>' . __( 'Vehicle Trim:', 'theme_domain_slug' ) . '</strong> ' . get_post_meta( get_the_ID(), 'car-model-trim', true ) . '</p>';    
-    echo '<p><strong>' . __( 'VIN Number:', 'theme_domain_slug' ) . '</strong> ' . get_post_meta( get_the_ID(), 'vin_number', true ) . '</p>'; 
-    echo '<p><strong>' . __( 'Plate Number:', 'theme_domain_slug' ) . '</strong> ' . get_post_meta( get_the_ID(), 'lic_plate', true ) . '</p>';   
+        $order = new WC_Order ( $order_id );
+        $customer_id = ( int ) $order->get_user_id();
+        $customer = get_userdata ( $customer_id );
+
+        echo "<h3>Vehicle Information</h3>";
+        echo '<p><strong>' . __( 'Vehicle Year:', 'theme_domain_slug' ) . '</strong> ' . $customer->account_car_year . '</p>';    
+        echo '<p><strong>' . __( 'Vehicle Make:', 'theme_domain_slug' ) . '</strong> ' . $customer->account_car_make . '</p>';    
+        echo '<p><strong>' . __( 'Vehicle Model:', 'theme_domain_slug' ) . '</strong> ' . $customer->account_car_model . '</p>';    
+        echo '<p><strong>' . __( 'Vehicle Trim:', 'theme_domain_slug' ) . '</strong> ' . $customer->account_car_model_trim . '</p>';    
+        echo '<p><strong>' . __( 'VIN Number:', 'theme_domain_slug' ) . '</strong> ' . $customer->account_vin_number . '</p>'; 
+        echo '<p><strong>' . __( 'Plate Number:', 'theme_domain_slug' ) . '</strong> ' . $customer->account_lic_plate . '</p>';   
     }   
 
 // Display field value on the order edit page
 add_action( 'woocommerce_admin_order_data_after_shipping_address', 'djl_checkout_field_display_location_order_meta', 10, 1 );
 add_action( 'woocommerce_admin_booking_data_after_booking_details ', 'djl_checkout_field_display_location_order_meta', 10, 1);
 
-function djl_checkout_field_display_location_order_meta($order){
+function djl_checkout_field_display_location_order_meta($order_id){
 
-    echo "<h3>Location Details</h3>";
-    echo '<p><strong>' . __( 'Location:', 'theme_domain_slug' ) . '</strong> ' . get_post_meta( get_the_ID(), 'order-location', true ) . '</p>';  
+
+
+        $order = new WC_Order ( $order_id );
+        $customer_id = ( int ) $order->get_user_id();
+        $customer = get_userdata ( $customer_id );
+
+
+        echo "<h3>Location Details</h3>";
+        echo '<p><strong>' . __( 'Location:', 'theme_domain_slug' ) . '</strong> ' . $customer->account_order_location . '</p>';  
 
 }   
 
@@ -731,3 +763,71 @@ function booking_add_to_cart( $atts ) {
 
         return '<div class="' . esc_attr( $css_class ) . '">' . ob_get_clean() . '</div>';
     }
+
+
+
+function pw_global_js_vars() {
+
+        if ( is_page() ) {
+
+                echo '<script>';
+                echo "(function( $ ) {";
+                echo "$(function() {";   
+
+
+              global $product;
+
+              $args = array( 
+                'post_type' => 'product',
+                'product_cat' => 'location'
+                 );
+
+                  $loop = new WP_Query( $args );
+                  while ( $loop->have_posts() ) : 
+                      $loop->the_post();
+
+
+                echo "$('#";
+                echo get_the_ID(); 
+                echo "').hide();";                
+
+                endwhile;    
+
+                echo "$('#type').change(function(){";
+                echo " if($('#type').val() == 'choose') { $('#choose').show(); } else { $('#choose').hide(); }";    
+
+                global $product;
+
+                 $args = array( 
+                'post_type' => 'product',
+                'product_cat' => 'location'
+                 );
+
+                  $loop = new WP_Query( $args );
+                  while ( $loop->have_posts() ) : 
+                      $loop->the_post();
+
+
+                echo "if($('#type').val() == '";
+                echo get_the_ID(); 
+                echo "') {";   
+                    
+                    echo "$('#";
+                    echo get_the_ID(); 
+                    echo "').show();";
+
+                echo " } else {";
+
+                    echo "$('#";
+                    echo get_the_ID(); 
+                    echo "').hide();";
+                echo "}";                    
+
+
+                endwhile; 
+                echo "});});";                 
+                echo "})(jQuery);";
+                echo '</script>';                
+    }
+}
+add_action( 'wp_footer', 'pw_global_js_vars' );

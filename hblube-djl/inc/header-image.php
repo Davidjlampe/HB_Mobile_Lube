@@ -14,12 +14,22 @@ if ( is_page_template( 'page-templates/home-page.php' ) ) {
 		<div id="header-content">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-8">	
+					<div class="col-md-6 col-md-offset-3 text-center">	
 					<h1><?php the_field('header_headline', 'options') ?></h1>
 					<h3><?php the_field('header_text', 'options') ?></h3>
-						<div class="company-select">	
-							<?php get_template_part('inc/business-select'); ?>
+						<div class="row">
+							<div class="col-sm-8 col-sm-offset-2">
+							
+								<div class="company-select">
+									<h3 style="color: #000;font-weight: 700;text-align: left;margin-left: 25px;">Step 1</h3>
+									<p>Select your workplace or business</p>
+									<img src="<?php bloginfo('stylesheet_directory'); ?>/img/office.svg" id="select-icon">	
+									<?php get_template_part('inc/business-select'); ?>
+								</div>
+
+							</div>
 						</div>
+
 					</div>
 				</div>
 			</div>					

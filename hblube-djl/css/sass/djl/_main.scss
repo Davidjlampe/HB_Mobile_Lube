@@ -156,13 +156,50 @@ article {
   margin-top: 30px;
 }
 
+// Modal 
+/////////////////////////////////
+
+.modal-company-select .woocommerce ul.products li.product{
+    width: 100%;
+    float: none;
+}
+
+.modal-company-select select {
+        margin-top: 20px;
+        width: 220px;
+        height: 35px;
+        border-radius: 0 !important;
+        background: rgba(28, 173, 126, .7);
+        color: #fff;
+        border: $brand-primary 1px solid;   
+}
+
+.modal-content {
+    margin-top: 20px;
+}
+
+.modal-header {
+    background: $brand-primary;
+    color: #fff;
+}
+
+.modal-title {
+    line-height: 1em;
+}
+
+
 // Home Page
 //////////////////////////
 
 
 #header-content {
 
-  height: 640px;
+  min-height: 500px;
+  height: auto;
+
+    @media (max-width: $screen-sm) {
+      height: auto;
+    }  
 
     h1, h3 {
         color: #fff; 
@@ -189,23 +226,67 @@ article {
     }
 
     select {
-        margin-top: 20px;
-        width: 220px;
-        height: 35px;
-        border-radius: 0 !important;
-      background: rgba(28, 173, 126, .7);
-        color: #fff;
-        border: $brand-primary 1px solid;   
-        }
+    margin-top: 20px;
+    margin-left: 10px;
+    width: 283px;
+    height: 46px;
+    border-radius: 0 !important;
+    background: $brand-primary;
+    color: #fff;
+    border: $brand-primary 1px solid;
+
+      @media (max-width: $screen-sm) {
+        width: 270px;
+      }
+
+    }
 
     .booking-button {
         margin-top: -150px;
+
+        @media (max-width: $screen-sm) {
+          margin-top: 0;
+          margin-left: 30px;
+        }
+
     }
 
     .company-select {
-      position: absolute;
+
+        background-color: #fff;
+        padding-bottom: 17px;
+        -webkit-box-shadow: 0px 0px 20px -1px rgba(0,0,0,0.37);
+        -moz-box-shadow: 0px 0px 20px -1px rgba(0,0,0,0.37);
+        box-shadow: 0px 0px 20px -1px rgba(0,0,0,0.37);
+        position: absolute;
+        width: 94%;
+        z-index: 999;
+        margin-left: -4px;
+        margin-top: 20px;
     }
+
+    .wc-bookings-booking-form .block-picker li {
+        font-size: .8em;
+    }    
+
+    p {
+      text-align: left;
+      margin-left: 25px;    
+    }
+
+  .woocommerce ul.products li.product h3 {
+      font-size: 1.7em;
+  }    
 } 
+
+.home-hero-products img {
+    margin-left: 1em;
+}
+
+#select-icon {
+    height: 45px;
+    width: 45px;
+}
 
 
 .pricing-table {
@@ -585,14 +666,6 @@ article {
 #header-content h3 {
     color: #fff;
 }
-#header-content select {
-    margin-top: 20px;
-    width: 220px;
-    height: 35px;
-    border-radius: 0 !important;
-    background: rgba(255,255,255,.5);
-    color: #fff;
-}
 
 
 .ui-datepicker-title {
@@ -611,8 +684,7 @@ article {
 
 button.wc-bookings-booking-form-button.single_add_to_cart_button.button.alt {
     background-color: #2ecc71;
-    margin-left: 30px;
-    padding: 10px 25px;
+    padding: 20px 103px;
     border-radius: 0;
 }
 

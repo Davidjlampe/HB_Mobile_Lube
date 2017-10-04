@@ -1,7 +1,9 @@
 // Core variables and mixins
+
 @import "djl/variables";
 @import "bootstrap/mixins";
 @import "djl/mixins";
+
 
 // Reset and dependencies
 @import "djl/normalize";
@@ -16,6 +18,7 @@
 @import "bootstrap/tables";
 @import "bootstrap/forms";
 @import "djl/buttons";
+
 //
 // Components
 @import "bootstrap/component-animations";
@@ -40,6 +43,7 @@
 @import "bootstrap/responsive-embed";
 @import "bootstrap/wells";
 @import "bootstrap/close";
+
 
 // Components w/ JavaScript
 @import "bootstrap/modals";
@@ -73,4 +77,5 @@
 @import "djl/ids";
 @import "djl/mediaqueries";
 @import "djl/gravityforms";
+
 
